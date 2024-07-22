@@ -1,0 +1,23 @@
+# config for AWS Cloud
+service: my-first-lambda
+
+plugins:
+  - serverless-offline
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    lambdaPort: 4001
+
+provider:
+  name: AWS
+  runtime: nodejs18.x
+  timeout: 800
+
+functions:
+  my-first-lambda:
+    handler: src/index.handler.js
+    events: 
+    - http:
+        method: ANY
+        path: /{proxy+}
